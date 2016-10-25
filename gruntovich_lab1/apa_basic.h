@@ -24,22 +24,26 @@
 
 //Подпрограмма сложения двух длинных беззнаковых чисел
 // a, b - суммируемые числа длинной size слов
-uint16_t* apa_add(uint16_t* a, uint16_t* b, uint16_t size);
+uint16_t* apa_add(uint16_t* a, uint16_t* b, uint32_t size);
 
 //Подпрограмма вычитания двух длинных беззнаковых чисел
 // a, b - числа, разность которых нужно посчитать, длинной size слов
-uint16_t* apa_sub(uint16_t* a, uint16_t* b, uint16_t size);
+uint16_t* apa_sub(uint16_t* a, uint16_t* b, uint32_t size);
 
 //Подпрограмма сравнения двух длинных беззнаковых чисел
 // a, b - сравниваемые числа длинной size слов
-int apa_cmp(uint16_t* a, uint16_t* b, uint16_t size);
+//  Возвращаемые значения:
+//     0: a == b
+//     1: a > b
+//    -1: b > a
+int apa_cmp(uint16_t* a, uint16_t* b, uint32_t size);
 
 //Подпрограмма генерации случайного длинного беззнакового числа
 // size - размер числа в словах
-uint16_t* apa_gen_rand(uint16_t size);
+uint16_t* apa_gen_rand(uint32_t size);
 
 //Подпрограмма вывода длинного беззнакового числа в шестандцатиричном формате (начиная со старших разрядов)
 // а - число размером size слов
-void apa_print(uint16_t* a, uint16_t size);
+void apa_print(uint16_t* a, uint32_t size);
 
 #endif
