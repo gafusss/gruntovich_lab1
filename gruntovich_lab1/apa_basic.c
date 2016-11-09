@@ -8,19 +8,14 @@
 
 //Подпрограмма сложения двух длинных беззнаковых чисел
 // a, b - суммируемые числа длинной size слов
-uint16_t* apa_add(uint16_t* a, uint16_t* b, uint32_t size)
+// c - сумма a и b, размером size + 1 слов
+uint16_t* apa_add(uint16_t* a, uint16_t* b, uint32_t size, uint16_t* c)
 {
-	//Сумма чисел c = a + b
-	uint16_t *c;
-
 	// Бит переноса разряда при сложении
 	uint16_t d = 0;
 
 	//Результат элементарного сложения слов
 	uint32_t T;
-
-	//Выделение памяти размером size + 1 слов
-	c = calloc(size + 1, sizeof(uint16_t));
 
 	for (uint32_t i = 0; i < size; i++)
 	{
@@ -42,19 +37,14 @@ uint16_t* apa_add(uint16_t* a, uint16_t* b, uint32_t size)
 
 //Подпрограмма вычитания двух длинных беззнаковых чисел
 // a, b - числа, разность которых нужно посчитать, длинной size слов
-uint16_t* apa_sub(uint16_t* a, uint16_t* b, uint32_t size)
+// c - разность a и b, размером size + 1 слов
+uint16_t* apa_sub(uint16_t* a, uint16_t* b, uint32_t size, uint16_t* c)
 {
-	//Разность чисел c = a - b
-	uint16_t *c;
-
 	// Бит переноса разряда при вычитании
 	uint16_t d = 0;
 
 	//Результат элементарного вычитания слов
 	uint32_t T;
-
-	//Выделение памяти размером size + 1 слов
-	c = calloc(size + 1, sizeof(uint16_t));
 
 	for (uint32_t i = 0; i < size; i++)
 	{
@@ -101,14 +91,9 @@ int apa_cmp(uint16_t* a, uint16_t* b, uint32_t size)
 }
 
 //Подпрограмма генерации случайного длинного беззнакового числа
-// size - размер числа в словах
-uint16_t* apa_gen_rand(uint32_t size)
+// a - массив для записи числа размером size слов
+uint16_t* apa_gen_rand(uint16_t* a, uint32_t size)
 {
-	//Случайное беззнаковое число длинной size
-	uint16_t *a;
-
-	//Выделение памяти размером size слов
-	a = calloc(size, sizeof(uint16_t));
 
 	for (uint32_t i = 0; i < size; i++)
 	{

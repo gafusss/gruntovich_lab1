@@ -14,16 +14,16 @@
 int main(int argc, char *argv[], char *envp[])
 {
 	//Первое слагаемое
-	uint16_t *a;
+	uint16_t a[SIZE];
 
 	//Второе слагаемое
-	uint16_t *b;
+	uint16_t b[SIZE];
 
 	//Сумма двух слагаемых
-	uint16_t *c;
+	uint16_t c[SIZE + 1];
 
 	//Разность суммы и второго слагаемого
-	uint16_t *d;
+	uint16_t d[SIZE + 1];
 
 	//Результат сравнения первого слагаемого с разностью
 	int e;
@@ -32,21 +32,21 @@ int main(int argc, char *argv[], char *envp[])
 	srand(time(NULL));
 	
 	//Генерация 256-битных беззнаковых чисел a и b
-	a = apa_gen_rand(SIZE);
-	b = apa_gen_rand(SIZE);
+	apa_gen_rand(a, SIZE);
+	apa_gen_rand(b, SIZE);
 	
 	//Вывод сгенерированных чисел
 	apa_print(a, SIZE);
 	apa_print(b, SIZE);
 
 	//Сложение чисел c = a + b
-	c = apa_add(a, b, SIZE);
+	apa_add(a, b, SIZE, c);
 	
 	//Вывод суммы c
 	apa_print(c, SIZE);
 
 	//Вычитание из суммы второго слагаемого d = c - b
-	d = apa_sub(c, b, SIZE);
+	apa_sub(c, b, SIZE, d);
 
 	//Вывод разности d
 	apa_print(d, SIZE);
@@ -58,9 +58,5 @@ int main(int argc, char *argv[], char *envp[])
 	printf("%d\n", e);
 
 	system("PAUSE");
-	free(a);
-	free(b);
-	free(c);
-	free(d);
 	return 0;
 }

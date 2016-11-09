@@ -14,16 +14,16 @@
 int main(int argc, char *argv[], char *envp[])
 {
 	//Первое слагаемое
-	uint16_t *a;
+	uint16_t a[SIZE];
 
 	//Второе слагаемое
-	uint16_t *b;
+	uint16_t b[SIZE];
 
 	//Сумма двух слагаемых
-	uint16_t *c;
+	uint16_t c[SIZE + 1];
 
 	//Разность суммы и второго слагаемого
-	uint16_t *d;
+	uint16_t d[SIZE + 1];
 
 	//Результат сравнения первого слагаемого с разностью
 	int e;
@@ -33,18 +33,20 @@ int main(int argc, char *argv[], char *envp[])
 
 	for (uint32_t i = 0; i < UINT32_MAX; i++)
 	{
-		//Вывод номера итерации
-		printf("%u\n", i + 1);
+		if (i % 100000 == 0) {
+			//Вывод номера итерации
+			printf("%u\n", i + 1);
+		}
 
 		//Генерация 256-битных беззнаковых чисел a и b
-		a = apa_gen_rand(SIZE);
-		b = apa_gen_rand(SIZE);
+		apa_gen_rand(a, SIZE);
+		apa_gen_rand(b, SIZE);
 
 		//Сложение чисел c = a + b
-		c = apa_add(a, b, SIZE);
+		apa_add(a, b, SIZE, c);
 
 		//Вычитание из суммы второго слагаемого d = c - b
-		d = apa_sub(c, b, SIZE);
+		apa_sub(c, b, SIZE, d);
 
 		//Сравнение разности и первого слагаемого (a и d)
 		e = apa_cmp(a, d, SIZE);
@@ -59,12 +61,6 @@ int main(int argc, char *argv[], char *envp[])
 			apa_print(d, SIZE);
 			system("PAUSE");
 		}
-
-		//Освобождение памяти
-		free(a);
-		free(b);
-		free(c);
-		free(d);
 	}
 
 	system("PAUSE");
