@@ -12,7 +12,7 @@
 //     0: a == b
 //     1: a > b
 //    -1: b > a
-int apa_cmp(uint16_t* a, uint16_t* b, uintmax_t size)
+int apa_cmp(uint16_t const * const a, uint16_t const * const b, uintmax_t const size)
 {
 	for (uintmax_t i = size; i > 0; i--)
 	{
@@ -34,7 +34,7 @@ int apa_cmp(uint16_t* a, uint16_t* b, uintmax_t size)
 
 //Подпрограмма генерации случайного длинного беззнакового числа
 // a - массив для записи числа размером size слов
-uint16_t* apa_gen_rand(uint16_t* a, uintmax_t size)
+uint16_t* apa_gen_rand(uint16_t* const a, uintmax_t const size)
 {
 
 	for (uintmax_t i = 0; i < size; i++)
@@ -50,7 +50,7 @@ uint16_t* apa_gen_rand(uint16_t* a, uintmax_t size)
 
 //Подпрограмма вывода длинного беззнакового числа в шестандцатиричном формате (начиная со старших разрядов)
 // а - число размером size слов
-void apa_print(uint16_t* a, uintmax_t size)
+void apa_print(uint16_t const * const a, uintmax_t const size)
 {
 	for (uintmax_t i = size; i > 0; i--)
 	{
@@ -62,7 +62,7 @@ void apa_print(uint16_t* a, uintmax_t size)
 //Подпрограмма заполнения длинного беззнакового числа заданным словом
 // a - число размером size слов
 // value - значение для заполнения
-void apa_fill(uint16_t* a, uintmax_t size, uint16_t value)
+void apa_fill(uint16_t* const a, uintmax_t const size, uint16_t const value)
 {
 	for (uintmax_t i = 0; i < size; i++)
 	{

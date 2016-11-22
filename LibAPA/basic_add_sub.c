@@ -9,7 +9,7 @@
 // c - сумма a и b, размером size слов
 //  ¬озвращаемые значени€:
 //     бит переноса
-uint16_t apa_add(uint16_t* a, uint16_t* b, uintmax_t size, uint16_t* c)
+uint16_t apa_add(uint16_t const * const a, uint16_t const * const b, uintmax_t const size, uint16_t * const c)
 {
 	// Ѕит переноса разр€да при сложении
 	uint16_t d = 0;
@@ -38,7 +38,7 @@ uint16_t apa_add(uint16_t* a, uint16_t* b, uintmax_t size, uint16_t* c)
 // c - разность a и b, размером size слов
 //  ¬озвращаемые значени€:
 //     бит переноса
-uint16_t apa_sub(uint16_t* a, uint16_t* b, uintmax_t size, uint16_t* c)
+uint16_t apa_sub(uint16_t const * const a, uint16_t const * const b, uintmax_t const size, uint16_t * const c)
 {
 	// Ѕит переноса разр€да при вычитании
 	uint16_t d = 0;

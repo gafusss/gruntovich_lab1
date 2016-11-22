@@ -7,7 +7,7 @@
 //Подпрограмма умножения двух длинных беззнаковых чисел
 // a, b - умножаемые числа длинной size_a и size_b слов, соответственно
 // c - произведение a и b, размером size_a + size_b слов
-void apa_mult(uint16_t* a, uintmax_t size_a, uint16_t* b, uintmax_t size_b, uint16_t* c)
+void apa_mult(uint16_t const * const a, uintmax_t const size_a, uint16_t const * const b, uintmax_t const size_b, uint16_t* const c)
 {
 	// Слово переноса разряда при умножении
 	uint16_t d;
