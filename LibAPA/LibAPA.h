@@ -63,4 +63,21 @@ void apa_fill(uint16_t* const a, uintmax_t const size, uint16_t const value);
 // c - произведение a и b, размером size_a + size_b слов
 void apa_mult(uint16_t const * const a, uintmax_t const size_a, uint16_t const * const b, uintmax_t const size_b, uint16_t* const c);
 
+//ѕодпрограмма умножени€ длинного беззнакового числа на слово
+// a - умножаемое число длинной size слов
+// b - множитель длинной в 1 слово
+// c - произведение a и b, размером size слов
+//  ¬озвращаемые значени€:
+//     слово переноса
+uint16_t apa_mult_word(uint16_t const * const a, uintmax_t const size, uint16_t const b, uint16_t* const c);
+
+//ѕодпрограмма делени€ длинного беззнакового числа на слово
+// a - делимое число длинной size слов
+// b - делитель длинной в 1 слово
+// c - частное a и b, размером size слов
+// r [Nullable] - остаток от делени€ a на b, размером 1 слово
+//  ¬озвращаемые значени€:
+//     остаток от делени€
+uint16_t apa_div_word(uint16_t const * const a, uintmax_t const size, uint16_t const b, uint16_t* const c, uint16_t* const r);
+
 #endif

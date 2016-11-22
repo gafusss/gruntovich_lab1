@@ -9,14 +9,14 @@
 // c - произведение a и b, размером size_a + size_b слов
 void apa_mult(uint16_t const * const a, uintmax_t const size_a, uint16_t const * const b, uintmax_t const size_b, uint16_t* const c)
 {
-	// Слово переноса разряда при умножении
+	//Слово переноса разряда при умножении
 	uint16_t d;
 
 	//Результат элементарного умножения слов
 	uint32_t T;
 
-	//Размер числа c
-	uintmax_t size_c = size_a + size_b;
+	//Размер числа c size_a + size_b слов
+	uintmax_t const size_c = size_a + size_b;
 
 	//Обнуление результата
 	apa_fill(c, size_c, 0);
@@ -41,4 +41,77 @@ void apa_mult(uint16_t const * const a, uintmax_t const size_a, uint16_t const *
 		//Сохранение переноса в следующий разряд
 		c[i + size_b] = d;
 	}
+}
+
+//Подпрограмма умножения длинного беззнакового числа на слово
+// a - умножаемое число длинной size слов
+// b - множитель длинной в 1 слово
+// c - произведение a и b, размером size слов
+//  Возвращаемые значения:
+//     слово переноса
+uint16_t apa_mult_word(uint16_t const * const a, uintmax_t const size, uint16_t const b, uint16_t* const c)
+{
+	//Результат элементарного умножения слов
+	uint32_t T;
+
+	//Слово переноса разряда при умножении
+	uint16_t d = 0;
+
+	for (uintmax_t i = 0; i < size; i++)
+	{
+		//Элементарное умножение слов с переносом
+		T = (uint32_t)a[i] * (uint32_t)b + (uint32_t)d;
+
+		//Сохранение полученного при умножении слова
+		c[i] = LOWORD(T);
+
+		//Перенос разряда
+		d = HIWORD(T);
+	}
+
+	//Возврат слова переноса
+	return d;
+}
+
+//Подпрограмма деления длинного беззнакового числа на слово
+// a - делимое число длинной size слов
+// b - делитель длинной в 1 слово
+// c - частное a и b, размером size слов
+// r [Nullable] - остаток от деления a на b, размером 1 слово
+//  Возвращаемые значения:
+//     остаток от деления
+uint16_t apa_div_word(uint16_t const * const a, uintmax_t const size, uint16_t const b, uint16_t* const c, uint16_t* const r)
+{
+	//Элементарное делимое
+	uint32_t T = 0;
+
+	if (b == 0)
+	{
+		//Деление на ноль
+		return UINT16_MAX;
+	}
+
+	for (uintmax_t i = size; i > 0; i--)
+	{
+		//Старшее слово - остаток предыдущего элементарного деления
+		T <<= sizeof(uint16_t) * 8;
+
+		//Младшее слово - очередное слово делимого числа
+		T |= a[i - 1];
+
+		//Сохранение результата элементарного деления
+		c[i - 1] = LOWORD(T / (uint32_t)b);
+
+		//Сохраниние остатка
+		T %= b;
+	}
+
+	if (r != NULL)
+	{
+		//Сохраниние остатка в переменную r, если она передана
+		*r = LOWORD(T);
+	}
+
+	//Возврат остатка
+	return LOWORD(T);
 }
