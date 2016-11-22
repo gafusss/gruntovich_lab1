@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibAPA", "LibAPA\LibAPA.vcxproj", "{EF638D86-C17C-4B6F-93EC-85259F4731F8}"
 EndProject
@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab1_1", "lab1_1\lab1_1.vcx
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab1_2", "lab1_2\lab1_2.vcxproj", "{E9BC9A6F-4626-4048-AD5F-81049139BCCF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab2_1", "lab2_1\lab2_1.vcxproj", "{4A4B9A1F-6833-4036-B8F9-ED5687E27AE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,14 @@ Global
 		{E9BC9A6F-4626-4048-AD5F-81049139BCCF}.Release|x64.Build.0 = Release|x64
 		{E9BC9A6F-4626-4048-AD5F-81049139BCCF}.Release|x86.ActiveCfg = Release|Win32
 		{E9BC9A6F-4626-4048-AD5F-81049139BCCF}.Release|x86.Build.0 = Release|Win32
+		{4A4B9A1F-6833-4036-B8F9-ED5687E27AE5}.Debug|x64.ActiveCfg = Debug|x64
+		{4A4B9A1F-6833-4036-B8F9-ED5687E27AE5}.Debug|x64.Build.0 = Debug|x64
+		{4A4B9A1F-6833-4036-B8F9-ED5687E27AE5}.Debug|x86.ActiveCfg = Debug|Win32
+		{4A4B9A1F-6833-4036-B8F9-ED5687E27AE5}.Debug|x86.Build.0 = Debug|Win32
+		{4A4B9A1F-6833-4036-B8F9-ED5687E27AE5}.Release|x64.ActiveCfg = Release|x64
+		{4A4B9A1F-6833-4036-B8F9-ED5687E27AE5}.Release|x64.Build.0 = Release|x64
+		{4A4B9A1F-6833-4036-B8F9-ED5687E27AE5}.Release|x86.ActiveCfg = Release|Win32
+		{4A4B9A1F-6833-4036-B8F9-ED5687E27AE5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,9 +12,9 @@
 //     0: a == b
 //     1: a > b
 //    -1: b > a
-int apa_cmp(uint16_t* a, uint16_t* b, uint32_t size)
+int apa_cmp(uint16_t* a, uint16_t* b, uintmax_t size)
 {
-	for (uint32_t i = size; i > 0; i--)
+	for (uintmax_t i = size; i > 0; i--)
 	{
 		if (a[i - 1] > b[i - 1])
 		{
@@ -34,10 +34,10 @@ int apa_cmp(uint16_t* a, uint16_t* b, uint32_t size)
 
 //Подпрограмма генерации случайного длинного беззнакового числа
 // a - массив для записи числа размером size слов
-uint16_t* apa_gen_rand(uint16_t* a, uint32_t size)
+uint16_t* apa_gen_rand(uint16_t* a, uintmax_t size)
 {
 
-	for (uint32_t i = 0; i < size; i++)
+	for (uintmax_t i = 0; i < size; i++)
 	{
 		//Так как rand() генерирует случайные числа НЕ МЕНЕЕ 15 бит длинной,
 		//чтобы избежать нулевой старший бит генерируем байты слова по отдельности
@@ -50,11 +50,22 @@ uint16_t* apa_gen_rand(uint16_t* a, uint32_t size)
 
 //Подпрограмма вывода длинного беззнакового числа в шестандцатиричном формате (начиная со старших разрядов)
 // а - число размером size слов
-void apa_print(uint16_t* a, uint32_t size)
+void apa_print(uint16_t* a, uintmax_t size)
 {
-	for (uint32_t i = size; i > 0; i--)
+	for (uintmax_t i = size; i > 0; i--)
 	{
 		printf("%04x", a[i - 1]);
 	}
 	printf("\n");
+}
+
+//Подпрограмма заполнения длинного беззнакового числа заданным словом
+// a - число размером size слов
+// value - значение для заполнения
+void apa_fill(uint16_t* a, uintmax_t size, uint16_t value)
+{
+	for (uintmax_t i = 0; i < size; i++)
+	{
+		a[i] = value;
+	}
 }

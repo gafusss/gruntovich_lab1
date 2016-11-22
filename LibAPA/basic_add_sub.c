@@ -9,7 +9,7 @@
 // c - сумма a и b, размером size слов
 //  Возвращаемые значения:
 //     бит переноса
-uint16_t apa_add(uint16_t* a, uint16_t* b, uint32_t size, uint16_t* c)
+uint16_t apa_add(uint16_t* a, uint16_t* b, uintmax_t size, uint16_t* c)
 {
 	// Бит переноса разряда при сложении
 	uint16_t d = 0;
@@ -17,7 +17,7 @@ uint16_t apa_add(uint16_t* a, uint16_t* b, uint32_t size, uint16_t* c)
 	//Результат элементарного сложения слов
 	uint32_t T;
 
-	for (uint32_t i = 0; i < size; i++)
+	for (uintmax_t i = 0; i < size; i++)
 	{
 		//Элементарное сложение слов чисел с битом переноса
 		T = (uint32_t)(a[i]) + (uint32_t)(b[i]) + (uint32_t)(d);
@@ -38,7 +38,7 @@ uint16_t apa_add(uint16_t* a, uint16_t* b, uint32_t size, uint16_t* c)
 // c - разность a и b, размером size слов
 //  Возвращаемые значения:
 //     бит переноса
-uint16_t apa_sub(uint16_t* a, uint16_t* b, uint32_t size, uint16_t* c)
+uint16_t apa_sub(uint16_t* a, uint16_t* b, uintmax_t size, uint16_t* c)
 {
 	// Бит переноса разряда при вычитании
 	uint16_t d = 0;
@@ -46,7 +46,7 @@ uint16_t apa_sub(uint16_t* a, uint16_t* b, uint32_t size, uint16_t* c)
 	//Результат элементарного вычитания слов
 	uint32_t T;
 
-	for (uint32_t i = 0; i < size; i++)
+	for (uintmax_t i = 0; i < size; i++)
 	{
 		//Элементарное вычитание слов чисел с битом переноса
 		T = (uint32_t)(a[i]) - (uint32_t)(b[i]) - (uint32_t)(d);
