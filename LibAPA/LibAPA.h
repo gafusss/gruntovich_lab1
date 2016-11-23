@@ -6,13 +6,21 @@
 #ifndef ARBITRARY_PRECISION_ARITHMETIC_H
 #define ARBITRARY_PRECISION_ARITHMETIC_H
 
+#pragma region includes
+
 #include <stdint.h>
+
+#pragma endregion Вложения
+
+#pragma region defines
 
 //Настройка функции apa_div.
 //MAX_DIV_OPERAND_SIZE - наибольшая возможная в проекте длина в словах аргументов функции apa_div.
 //Эта константа необходима для эффективного выделения памяти в функции apa_div.
 //Оставьте ее без изменения, если не понимаете, что это значит.
 #define MAX_DIV_OPERAND_SIZE 32
+
+#pragma region macros
 
 //Макрос получения слова из двух байт
 #define MAKEWORD(a,b) ((((uint16_t)(a))<<8)+b)
@@ -29,19 +37,11 @@
 //Макрос получения младшего байта
 #define LOBYTE(T) ((uint8_t)(T))
 
-//Подпрограмма сложения двух длинных беззнаковых чисел
-// a, b - суммируемые числа длинной size слов
-// c - сумма a и b, размером size слов
-//  Возвращаемые значения:
-//     бит переноса
-uint16_t apa_add(uint16_t const * const a, uint16_t const * const b, uintmax_t const size, uint16_t * const c);
+#pragma endregion Макросы
 
-//Подпрограмма вычитания двух длинных беззнаковых чисел
-// a, b - числа, разность которых нужно посчитать, длинной size слов
-// c - разность a и b, размером size слов
-//  Возвращаемые значения:
-//     бит переноса
-uint16_t apa_sub(uint16_t const * const a, uint16_t const * const b, uintmax_t const size, uint16_t * const c);
+#pragma endregion Макросы и константы
+
+#pragma region util
 
 //Подпрограмма сравнения двух длинных беззнаковых чисел
 // a, b - сравниваемые числа длинной size слов
@@ -64,10 +64,31 @@ void apa_print(uint16_t const * const a, uintmax_t const size);
 // value - значение для заполнения
 void apa_fill(uint16_t* const a, uintmax_t const size, uint16_t const value);
 
-//Подпрограмма умножения двух длинных беззнаковых чисел
-// a, b - умножаемые числа длинной size_a и size_b слов, соответственно
-// c - произведение a и b, размером size_a + size_b слов
-void apa_mult(uint16_t const * const a, uintmax_t const size_a, uint16_t const * const b, uintmax_t const size_b, uint16_t* const c);
+//Подпрограмма присвоения одного длинного беззнакового числа другому
+// a - число размером size слов, которому будет присвоено значение числа b
+void apa_assign(uint16_t* const a, uint16_t const * const b, uintmax_t size);
+
+#pragma endregion Вспомогательные подпрограммы (файл util.c)
+
+#pragma region basic_add_sub
+
+//Подпрограмма сложения двух длинных беззнаковых чисел
+// a, b - суммируемые числа длинной size слов
+// c - сумма a и b, размером size слов
+//  Возвращаемые значения:
+//     бит переноса
+uint16_t apa_add(uint16_t const * const a, uint16_t const * const b, uintmax_t const size, uint16_t * const c);
+
+//Подпрограмма вычитания двух длинных беззнаковых чисел
+// a, b - числа, разность которых нужно посчитать, длинной size слов
+// c - разность a и b, размером size слов
+//  Возвращаемые значения:
+//     бит переноса
+uint16_t apa_sub(uint16_t const * const a, uint16_t const * const b, uintmax_t const size, uint16_t * const c);
+
+#pragma endregion Подпрограммы сложения и вычитания (файл basic_add_sub.c)
+
+#pragma region basic_mult_div
 
 //Подпрограмма умножения длинного беззнакового числа на слово
 // a - умножаемое число длинной size слов
@@ -86,14 +107,17 @@ uint16_t apa_mult_word(uint16_t const * const a, uintmax_t const size, uint16_t 
 //     остаток от деления
 uint16_t apa_div_word(uint16_t const * const a, uintmax_t const size, uint16_t const b, uint16_t* const c, uint16_t* const r);
 
-//Подпрограмма присвоения одного длинного беззнакового числа другому
-// a - число размером size слов, которому будет присвоено значение числа b
-void apa_assign(uint16_t* const a, uint16_t const * const b, uintmax_t size);
+//Подпрограмма умножения двух длинных беззнаковых чисел
+// a, b - умножаемые числа длинной size_a и size_b слов, соответственно
+// c - произведение a и b, размером size_a + size_b слов
+void apa_mult(uint16_t const * const a, uintmax_t const size_a, uint16_t const * const b, uintmax_t const size_b, uint16_t* const c);
 
 //Подпрограмма деления двух длинных беззнаковых чисел
 // U - делимое, размером sizeU слов
 // V - делитель, размером sizeV слов
 // Q [Nullable] - частное, размером sizeU слов
 // R [Nullable] - остаток, размером sizeV слов
-void apa_div(uint16_t const * const U, uint16_t const * const V, uint16_t* const Q,	uint16_t* const R, uintmax_t sizeU,	uintmax_t sizeV);
+void apa_div(uint16_t const * const U, uint16_t const * const V, uint16_t* const Q, uint16_t* const R, uintmax_t sizeU, uintmax_t sizeV);
+#pragma endregion Подпрограммы умножения и деления (файл basic_mult_div.c)
+
 #endif
