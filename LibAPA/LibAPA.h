@@ -8,6 +8,12 @@
 
 #include <stdint.h>
 
+//Настройка функции apa_div.
+//MAX_DIV_OPERAND_SIZE - наибольшая возможная в проекте длина в словах аргументов функции apa_div.
+//Эта константа необходима для эффективного выделения памяти в функции apa_div.
+//Оставьте ее без изменения, если не понимаете, что это значит.
+#define MAX_DIV_OPERAND_SIZE 32
+
 //Макрос получения слова из двух байт
 #define MAKEWORD(a,b) ((((uint16_t)(a))<<8)+b)
 
@@ -74,10 +80,20 @@ uint16_t apa_mult_word(uint16_t const * const a, uintmax_t const size, uint16_t 
 //Подпрограмма деления длинного беззнакового числа на слово
 // a - делимое число длинной size слов
 // b - делитель длинной в 1 слово
-// c - частное a и b, размером size слов
+// c [Nullable] - частное a и b, размером size слов
 // r [Nullable] - остаток от деления a на b, размером 1 слово
 //  Возвращаемые значения:
 //     остаток от деления
 uint16_t apa_div_word(uint16_t const * const a, uintmax_t const size, uint16_t const b, uint16_t* const c, uint16_t* const r);
 
+//Подпрограмма присвоения одного длинного беззнакового числа другому
+// a - число размером size слов, которому будет присвоено значение числа b
+void apa_assign(uint16_t* const a, uint16_t const * const b, uintmax_t size);
+
+//Подпрограмма деления двух длинных беззнаковых чисел
+// U - делимое, размером sizeU слов
+// V - делитель, размером sizeV слов
+// Q [Nullable] - частное, размером sizeU слов
+// R [Nullable] - остаток, размером sizeV слов
+void apa_div(uint16_t const * const U, uint16_t const * const V, uint16_t* const Q,	uint16_t* const R, uintmax_t sizeU,	uintmax_t sizeV);
 #endif

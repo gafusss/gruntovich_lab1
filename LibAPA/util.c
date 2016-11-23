@@ -69,3 +69,13 @@ void apa_fill(uint16_t* const a, uintmax_t const size, uint16_t const value)
 		a[i] = value;
 	}
 }
+
+//ѕодпрограмма присвоени€ одного длинного беззнакового числа другому
+// a - число размером size слов, которому будет присвоено значение числа b
+void apa_assign(uint16_t* const a, uint16_t const * const b, uintmax_t size)
+{
+	for (uintmax_t i = 0; i < size; i++)
+	{
+		a[i] = b[i];
+	}
+}
