@@ -31,11 +31,11 @@ int main(int argc, char *argv[], char *envp[])
 	//Инициализация начального значения ГПСП текущим временем
 	srand(time(NULL));
 
-	for (uint32_t i = 0; i < UINT32_MAX; i++)
+	for (uintmax_t i = 0; i < UINTMAX_MAX; i++)
 	{
 		if (i % 100000 == 0) {
 			//Вывод номера итерации
-			printf("%u\n", i + 1);
+			printf("%llu\n", i + 1);
 		}
 
 		//Генерация 256-битных беззнаковых чисел a и b
