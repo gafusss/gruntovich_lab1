@@ -20,7 +20,10 @@
 //Оставьте ее без изменения, если не понимаете, что это значит.
 #define MAX_DIV_OPERAND_SIZE 32
 
-// TODO: Comment
+//Настройка функции apa_mod_mult.
+//MAX_MOD_MULT_OPERAND_SIZE - наибольшая возможная в проекте длина в словах аргументов функции apa_mod_mult.
+//Эта константа необходима для эффективного выделения памяти в функции apa_mod_mult.
+//Оставьте ее без изменения, если не понимаете, что это значит.
 #define MAX_MOD_MULT_OPERAND_SIZE 32
 
 #pragma region macros
@@ -121,16 +124,31 @@ void apa_mult(uint16_t const * const a, uintmax_t const size_a, uint16_t const *
 // Q [Nullable] - частное, размером sizeU слов
 // R [Nullable] - остаток, размером sizeV слов
 void apa_div(uint16_t const * const U, uint16_t const * const V, uint16_t* const Q, uint16_t* const R, uintmax_t sizeU, uintmax_t sizeV);
+
 #pragma endregion Подпрограммы умножения и деления (файл basic_mult_div.c)
 
+#pragma region mod_mult_pow
 
-
+//Подпрограмма вычисления длинного беззнакового числа по модулю другого длинного беззнакового числа
+// a - число, модуль которого необходимо вычислить, размером size_a слов
+// b - модуль, размером size_b слов
+// с - a mod b, размером size_b слов
 void apa_mod(uint16_t const * const a, uintmax_t const size_a, uint16_t const * const b, uintmax_t const size_b, uint16_t* const c);
 
+//Подпрограмма вычисления произведения двух длинных беззнаковых чисел по модулю длинного беззнакового числа
+// a - первый сомножитель, размером size слов
+// b - второй сомножитель, размером size слов
+// n - модуль, размером size слов
+// c - a * b mod n, размеров size слов
 void apa_mod_mult(uint16_t const * const a, uint16_t const * const b, uint16_t const * const n, uint16_t* const c, uintmax_t const size);
 
+//Подпрограмма возведения длинного беззнакового числа в степень длинного беззнакового числа по модулю длинного беззнакового числа
+// a - основание, размером size_a слов
+// b - показатель, размером size_b слов
+// n - модуль, размером size_a слов
+// c - a ^ b mod n, размеров size_a слов
 void apa_mod_pow(uint16_t const * const a, uintmax_t const size_a, uint16_t const * const b, uintmax_t const size_b, uint16_t const * const n, uint16_t* const c);
 
-
+#pragma endregion Подпрограммы операций по модулю (файл mod_mult_pow.c)
 
 #endif
