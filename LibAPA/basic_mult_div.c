@@ -121,6 +121,8 @@ uint16_t apa_div_word(uint16_t const * const a, uintmax_t const size, uint16_t c
 // V - делитель, размером sizeV слов
 // Q [Nullable] - частное, размером sizeU слов
 // R [Nullable] - остаток, размером sizeV слов
+// sizeU <= MAX_DIV_OPERAND_SIZE (см. LibAPA.h)
+// sizeV <= MAX_DIV_OPERAND_SIZE (см. LibAPA.h)
 void apa_div(uint16_t const * const U, uint16_t const * const V, uint16_t* const Q, uint16_t* const R, uintmax_t sizeU, uintmax_t sizeV)
 {
 	uint16_t q, buf1, buf2;                /* для промежуточного хранения */

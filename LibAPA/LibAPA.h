@@ -123,6 +123,8 @@ void apa_mult(uint16_t const * const a, uintmax_t const size_a, uint16_t const *
 // V - делитель, размером sizeV слов
 // Q [Nullable] - частное, размером sizeU слов
 // R [Nullable] - остаток, размером sizeV слов
+// sizeU <= MAX_DIV_OPERAND_SIZE (см. LibAPA.h)
+// sizeV <= MAX_DIV_OPERAND_SIZE (см. LibAPA.h)
 void apa_div(uint16_t const * const U, uint16_t const * const V, uint16_t* const Q, uint16_t* const R, uintmax_t sizeU, uintmax_t sizeV);
 
 #pragma endregion Подпрограммы умножения и деления (файл basic_mult_div.c)
@@ -140,6 +142,7 @@ void apa_mod(uint16_t const * const a, uintmax_t const size_a, uint16_t const * 
 // b - второй сомножитель, размером size слов
 // n - модуль, размером size слов
 // c - a * b mod n, размеров size слов
+// size <= MAX_MOD_MULT_OPERAND_SIZE (см. LibAPA.h)
 void apa_mod_mult(uint16_t const * const a, uint16_t const * const b, uint16_t const * const n, uint16_t* const c, uintmax_t const size);
 
 //Подпрограмма возведения длинного беззнакового числа в степень длинного беззнакового числа по модулю длинного беззнакового числа
